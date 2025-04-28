@@ -5,11 +5,7 @@
 void ClickMouse() {
     INPUT input = {0};
     input.type = INPUT_MOUSE;
-    input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
-    SendInput(1, &input, sizeof(INPUT));
-    ZeroMemory(&input, sizeof(INPUT));
-    input.type = INPUT_MOUSE;
-    input.mi.dwFlags = MOUSEEVENTF_LEFTUP;
+    input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP;
     SendInput(1, &input, sizeof(INPUT));
 }
 
