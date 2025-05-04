@@ -81,10 +81,10 @@ Napi::Value TypeError(Napi::Env &env, std::string msg) {
 Napi::Value LoopClick(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     if (info.Length() < 3) { return TypeError(env, "Ожидается (timeMs:Number, gaps:Array, callback:Function)"); }
-    if (!info[0].IsNumber()) { TypeError(env, "Первый параметр ожидает тип Number время старта в миллисекундах"); }
-    if (!info[1].IsArray()) { TypeError(env, "Второй параметр ожидает тип Array задержки в миллисекундах между кликами."); }
-    if (!info[2].IsFunction()) { TypeError(env, "Третий параметр ожидает Callback функцию которая выполняется перед началом кликов."); }
-    if (!info[3].IsFunction()) { TypeError(env, "Третий параметр ожидает Callback функцию которая выполняется после завершения кликов."); }
+    if (!info[0].IsNumber()) { return TypeError(env, "Первый параметр ожидает тип Number время старта в миллисекундах"); }
+    if (!info[1].IsArray()) { return TypeError(env, "Второй параметр ожидает тип Array задержки в миллисекундах между кликами."); }
+    if (!info[2].IsFunction()) { return TypeError(env, "Третий параметр ожидает Callback функцию которая выполняется перед началом кликов."); }
+    if (!info[3].IsFunction()) { return TypeError(env, "Третий параметр ожидает Callback функцию которая выполняется после завершения кликов."); }
     uint32_t        startTime   = info[0].As<Napi::Number>().Uint32Value();
     Napi::Array     gaps        = info[1].As<Napi::Array>();
     Napi::Function  cbDelay     = info[2].As<Napi::Function>();
